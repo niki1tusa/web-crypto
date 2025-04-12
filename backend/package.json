@@ -10,16 +10,12 @@
     "dev": "ts-node-dev --rs ./src/index.ts",
     "build": "rimraf .dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
-    "pretify": "prettier --log-level warn --cache --write '{src/**/*, *}.{ts, tsx, js, json, yml, scss}' '!**/{node.modules, dist}/**/*'"
+    "types": "tsc --noEmit --project ./tsconfig.json",
+    "pretify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node.modules,dist}/**/*'"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.1",
-    "prettier": "^3.5.3",
-    "rimraf": "^6.0.1",
-    "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.8.3"
+    "@types/express": "^5.0.1"
   },
   "dependencies": {
     "@trpc/server": "^11.0.4",
