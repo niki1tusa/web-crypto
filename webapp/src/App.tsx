@@ -1,15 +1,24 @@
-import { getAllIdeaRoute, getViewIdeaRoute, viewParams } from "./lib/routes"
+import * as routes from './lib/routes'
 import { TrpcProvider } from "./lib/trpc"
+import { Layout } from "./components/Layout"
 import { Allidea } from "./pages/AllideasPage"
-import Viewidea from "./pages/ViewideaPage"
+import {Viewidea} from "./pages/ViewideaPage"
 import { BrowserRouter, Routes, Route } from "react-router"
+import './styles/global.scss'
+import './styles/_mixins.scss'
+import { NewIdeaPage } from "./pages/NewIdeaPage"
 export const App = () => {
   return (
     <TrpcProvider>
       <BrowserRouter>
       <Routes>
-           <Route path={getAllIdeaRoute()} element={<Allidea />}/>        
-     <Route path={getViewIdeaRoute(viewParams)} element={<Viewidea/>}/>  
+        <Route element={<Layout/>}>
+      <Route path={routes.getAllIdeaRoute()} element={<Allidea />}/>        
+       <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage/>}/>     
+       <Route path={routes.getViewIdeaRoute(routes.viewParams)} element={<Viewidea/>}/>
+ 
+        </Route>
+ 
       </Routes>
       </BrowserRouter>
     </TrpcProvider>

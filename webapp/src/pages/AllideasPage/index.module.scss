@@ -1,0 +1,25 @@
+@import '../../styles/_variable.scss';
+@import '../../styles/_mixins.scss';
+
+.ideas {
+  .idea {
+    padding: 20px;
+    border: 1px solid $black;
+    border-radius: 10px;
+    & + .idea {
+      margin-top: 20px;
+    }
+
+    .ideaName {
+      @include h2;
+
+      .ideaLink {
+        @include link;
+      }
+    }
+
+    .ideaDescription {
+      font-size: 18px;
+    }
+  }
+}

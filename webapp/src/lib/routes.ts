@@ -8,4 +8,6 @@ export const getAllIdeaRoute = () => '/'
 export const viewParams =  getParams({id: true})
 export type viewTypeParams = typeof viewParams
 
-export const getViewIdeaRoute = ({id}: {id: string}) => `/ideas/${id}`  
+export const getViewIdeaRoute = ({id}: {id: string}) => `/ideas/${id}`
+
+export const getNewIdeaRoute = () => '/ideas/new'
