@@ -1,5 +1,5 @@
 import { trpc } from "../../lib/trpc"
-export function Data() {
+export function Allidea() {
   const { data, error, isLoading, isFetching, isError } =
     trpc.getData.useQuery()
 
