@@ -1,3 +1,4 @@
+import { getAllIdeaRoute, getViewIdeaRoute, viewParams } from "./lib/routes"
 import { TrpcProvider } from "./lib/trpc"
 import { Allidea } from "./pages/AllideasPage"
 import Viewidea from "./pages/ViewideaPage"
@@ -7,8 +8,8 @@ export const App = () => {
     <TrpcProvider>
       <BrowserRouter>
       <Routes>
-           <Route path="/" element={<Allidea />}/>        
-     <Route path="/ideas/:app" element={<Viewidea/>}/>  
+           <Route path={getAllIdeaRoute()} element={<Allidea />}/>        
+     <Route path={getViewIdeaRoute(viewParams)} element={<Viewidea/>}/>  
       </Routes>
       </BrowserRouter>
     </TrpcProvider>
