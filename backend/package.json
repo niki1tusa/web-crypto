@@ -11,6 +11,7 @@
     "build": "rimraf .dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
     "types": "tsc --noEmit --project ./tsconfig.json",
+    "lint": "eslint --cache --cache-location .node_module/.cache/.eslintcache --ext .ts .",
     "pretify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node.modules,dist}/**/*'"
   },
   "devDependencies": {
