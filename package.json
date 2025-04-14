@@ -8,6 +8,7 @@
         "dev": "pnpm -r --parallel dev",
         "types": "concurrently 'pnpm b types' 'pnpm w types'",
         "pretify": "pnpm -r --parallel pretify"
+
     },
     "devDependencies": {
         "@eslint/compat": "^1.2.8",

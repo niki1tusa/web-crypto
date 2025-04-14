@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint --cache --cache-location node_modules/.cache/.eslintcache --ext .ts,.tsx .",
+    "stylelint": "stylelint --cache --cache-location ./node_modules/.cache/.stylelintcache \"src/styles/**/*.scss\"",
     "types": "tsc --noEmit --project ./tsconfig.json && tsc --noEmit --project ./tsconfig.node.json",
     "pretify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}' '!**/{node_modules,dist}/**/*'"
   },
@@ -32,6 +33,9 @@
     "@vitejs/plugin-react": "^4.3.4",
     "globals": "^15.15.0",
     "prettier": "^3.5.3",
+    "stylelint": "^16.18.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   }
