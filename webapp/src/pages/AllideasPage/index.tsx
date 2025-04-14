@@ -2,7 +2,7 @@ import { getViewIdeaRoute } from "../../lib/routes"
 import { trpc } from "../../lib/trpc"
 import { Link } from "react-router"
 import scss from "./index.module.scss"
-import { Segement } from "../../components/Segment"
+import { Segment } from "../../components/Segment"
 export function Allidea() {
   const { data, error, isLoading, isFetching, isError } =
     trpc.getData.useQuery()
@@ -14,11 +14,11 @@ export function Allidea() {
     return <span>Error!!!{error.message}</span>
   }
   return (
-    <Segement title="All Ideas" >
+    <Segment title="All Ideas" >
       <div className={scss.ideas}>
         {data?.ideas.map(item => (
           <div key={`${item.name}-${item.id}`} className={scss.idea}>
-            <Segement
+            <Segment
               size={2}
               title={<Link
                   className={scss.ideaLink}
@@ -31,6 +31,6 @@ export function Allidea() {
           </div>
         ))}
       </div>
-    </Segement>
+    </Segment>
   )
 }

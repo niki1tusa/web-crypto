@@ -1,5 +1,5 @@
 import styles from "./index.module.scss"
-export const Segement = ({
+export const Segment = ({
   title,
   size = 1,
   description,

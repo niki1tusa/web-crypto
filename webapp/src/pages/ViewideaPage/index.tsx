@@ -2,7 +2,7 @@ import { useParams } from "react-router"
 import { viewTypeParams } from "../../lib/routes"
 import { trpc } from "../../lib/trpc"
 import scss from "./index.module.scss"
-import { Segement } from "../../components/Segment"
+import { Segment } from "../../components/Segment"
 
 export const Viewidea = () => {
   const { id } = useParams() as viewTypeParams
@@ -16,17 +16,17 @@ export const Viewidea = () => {
   if (isError) {
     return <span>Error!!!{error.message}</span>
   }
-  if (!data.idea) {
+  if (!data || !data.idea) {
     return <span>idea not found</span>
   }
   return (
     
-<Segement title={data.idea.name} description={data.idea.description}>
+<Segment title={data.idea.name} description={data.idea.description}>
       <div
         className={scss.text}
         dangerouslySetInnerHTML={{ __html: data.idea.text }}
       />
-</Segement>
+</Segment>
 
 
   )
