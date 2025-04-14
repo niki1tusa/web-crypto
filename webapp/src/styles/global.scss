@@ -1,24 +1,25 @@
-@import '../../node_modules/reset-css/sass/reset';
-@import './variable';
+@import "../../node_modules/reset-css/sass/reset";
+@import "./variable";
 
-#root{
-                                height: 100%;
-    width: 100%;
-    position: 'relative';
+#root {
+  height: 100%;
+  width: 100%;
+  position: "relative";
 }
 
-*, *::after, *::before{
-    box-sizing: border-box;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-body{
-    background-color: $red;
-    font-family: $default-font;
-    font-size: $default-font-size;
-    color: $black;
+body {
+  background-color: $red;
+  font-family: $default-font;
+  font-size: $default-font-size;
+  color: $black;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-

@@ -1,58 +1,58 @@
-@import '../../styles/_variable.scss';
-@import '../../styles/_mixins.scss';
+@import "../../styles/_variable.scss";
+@import "../../styles/_mixins.scss";
 
-$breakpoint: '<=900px';
+$breakpoint: "<=900px";
 
 .layout {
-    display: flex;
-    flex-flow: row nowrap;
-    height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+  @include media($breakpoint) {
+    flex-flow: column nowrap;
+  }
+
+  .navigation {
+    height: 100vh;
+    overflow: auto;
+    flex: 0 0 200px;
+    padding: 20px 30px;
+    border-right: 1px solid $black;
     @include media($breakpoint) {
-      flex-flow: column nowrap;
+      overflow: visible;
+      flex: 0 0 auto;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid $black;
     }
-  
-    .navigation {
-      height: 100vh;
-      overflow: auto;
-      flex: 0 0 200px;
-      padding: 20px 30px;
-      border-right: 1px solid $black;
-      @include media($breakpoint) {
-        overflow: visible;
-        flex: 0 0 auto;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid $black;
-      }
-  
-      .logo {
-        font-weight: bold;
-        font-size: 20px;
-        margin-bottom: 10px;
-      }
-  
-      .menu {
-        .item {
-          &:not(:first-child) {
-            margin-top: 5px;
-          }
-  
-          .link {
-            @include link;
-          }
+
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .menu {
+      .item {
+        &:not(:first-child) {
+          margin-top: 5px;
+        }
+
+        .link {
+          @include link;
         }
       }
     }
-  
-    .content {
-      height: 100%;
-      overflow: auto;
-      flex: 1 1 100%;
-      padding: 20px 30px;
-      @include media($breakpoint) {
-        overflow: visible;
-        flex: 0 0 auto;
-        height: auto;
-      }
+  }
+
+  .content {
+    height: 100%;
+    overflow: auto;
+    flex: 1 1 100%;
+    padding: 20px 30px;
+    @include media($breakpoint) {
+      overflow: visible;
+      flex: 0 0 auto;
+      height: auto;
     }
   }
+}

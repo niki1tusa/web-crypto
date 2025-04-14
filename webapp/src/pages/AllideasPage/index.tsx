@@ -14,18 +14,20 @@ export function Allidea() {
     return <span>Error!!!{error.message}</span>
   }
   return (
-    <Segment title="All Ideas" >
+    <Segment title="All Ideas">
       <div className={scss.ideas}>
         {data?.ideas.map(item => (
           <div key={`${item.name}-${item.id}`} className={scss.idea}>
             <Segment
               size={2}
-              title={<Link
+              title={
+                <Link
                   className={scss.ideaLink}
                   to={getViewIdeaRoute({ id: item.id })}
                 >
                   {item.name}
-                </Link>}
+                </Link>
+              }
               description={item.description}
             />
           </div>

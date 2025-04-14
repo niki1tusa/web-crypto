@@ -20,16 +20,11 @@ export const Viewidea = () => {
     return <span>idea not found</span>
   }
   return (
-    
-<Segment title={data.idea.name} description={data.idea.description}>
+    <Segment title={data.idea.name} description={data.idea.description}>
       <div
         className={scss.text}
         dangerouslySetInnerHTML={{ __html: data.idea.text }}
       />
-</Segment>
-
-
+    </Segment>
   )
 }
-
-
