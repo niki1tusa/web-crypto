@@ -1,11 +1,18 @@
+import { type FormikProps } from "formik"
 
-export const Input = ({title, value, setFnc}:{title:string, value:string, setFnc:any}) => {
+export const Input = ({ name, label, formik}:{ name:string, label:string, formik:FormikProps<any>}) => {
+  const value = formik.values[name]
   return (
     <div className="mb-3 ">
-    <label htmlFor={value}>{title}</label>
+    <label htmlFor={name}>{label}</label>
     <br />
-    <input onChange={setFnc}
-    type="text" name={value} id={value}/>
+    <input onChange={(e)=>{
+      void formik.setFieldValue(name, e.target.value)
+    }}
+    type="text" 
+    name={name} 
+    id={name}
+    value={value}/>
   </div>
   )
 }
