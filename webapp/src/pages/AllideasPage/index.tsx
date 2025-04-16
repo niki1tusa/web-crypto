@@ -5,7 +5,7 @@ import scss from "./index.module.scss"
 import { Segment } from "../../components/Segment"
 export function Allidea() {
   const { data, error, isLoading, isFetching, isError } =
-    trpc.getData.useQuery()
+    trpc.getIdeas.useQuery()
 
   if (isLoading || isFetching) {
     return <span>App is loading!</span>
