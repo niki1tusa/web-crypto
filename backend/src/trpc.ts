@@ -8,6 +8,7 @@ const ideas = _.times(100, i => ({
   text: _.times(100, j => `<p>Text paragrph ${j}/....</p>`).join(""),
 }))
 
+
 const trpc = initTRPC.create()
 
 export const trpcRouter = trpc.router({

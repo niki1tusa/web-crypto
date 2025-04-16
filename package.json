@@ -6,7 +6,7 @@
         "b": "pnpm --filter @app/backend",
         "w": "pnpm --filter @app/webapp",
         "dev": "pnpm -r --parallel dev",
-        "types": "concurrently 'pnpm b types' 'pnpm w types'",
+        "types": "concurrently \"pnpm b types\" \"pnpm w types\"",
         "pretify": "pnpm -r --parallel pretify"
 
     },
