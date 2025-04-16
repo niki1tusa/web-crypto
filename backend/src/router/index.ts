@@ -1,13 +1,18 @@
 import { trpc } from "../lib/trpc"
-import { getIdeaTrpcRoute } from "./getIdea"
-import { getIdeasTrpcRoute } from "./getIdeas"
-
+// @index('./**/index.ts', f=>`import{ ${f.path.split('/').slice(0,-1).pop()}TrpcRoute } from '${f.path.split('/').slice(0,-1).join('/')}';`)
+import{ createIdeaTrpcRoute } from './createIdea';
+import{ getIdeaTrpcRoute } from './getIdea';
+import{ getIdeasTrpcRoute } from './getIdeas';
+// @endindex
 
 export const trpcRouter = trpc.router({
-    getIdea: getIdeaTrpcRoute,
-   getIdeas: getIdeasTrpcRoute
-    
-  })
+// @index('./**/index.ts', f=>`${f.path.split('/').slice(0,-1).pop()}: ${f.path.split('/').slice(0,-1).pop()}TrpcRoute,`)
+createIdea: createIdeaTrpcRoute,
+getIdea: getIdeaTrpcRoute,
+getIdeas: getIdeasTrpcRoute,
+// @endindex
+})
 
+// run depend Generate index: "CTRL + 7" !!!!!!
 
-export type TrpcRouter = typeof trpcRouter 
+export type TrpcRouter = typeof trpcRouter

@@ -23,7 +23,7 @@ export function Allidea() {
               title={
                 <Link
                   className={scss.ideaLink}
-                  to={getViewIdeaRoute({ id: item.id })}
+                  to={getViewIdeaRoute({ id: item.name })}
                 >
                   {item.name}
                 </Link>

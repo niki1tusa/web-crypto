@@ -9,7 +9,7 @@ export const getIdeaTrpcRoute = trpc.procedure
       }),
     )
     .query(({ input }) => {
-      const idea = ideas.find(item => item.id === input.id)
+      const idea = ideas.find(item => item.name === input.id)
       console.log("hello")
       return { idea: idea || null }
     })
