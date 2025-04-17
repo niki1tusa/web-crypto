@@ -1,6 +1,5 @@
 import _ from "lodash";
 
-
 export const ideas = _.times(100, i => ({
   name: `name${i}`,
   nick: `nick${i}`,
