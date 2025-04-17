@@ -1,8 +1,10 @@
 @import "https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap";
 
+$blue: '#337aff';
+$white: '#ffffff';
 $white-gray: oklch(96.7% 0.003 264.542deg);
 $red: oklch(64.5% 0.246 16.439deg);
 $black: oklch(26.9% 0 0deg);
-
+$borderRadiusSmall: 3px;
 $default-font: "Oswald", sans-serif;
 $default-font-size: 16px;

@@ -1,3 +1,9 @@
 {
-    "eslint.workingDirectories": ["webapp", "backend"]
+    "eslint.workingDirectories": [
+        "webapp",
+        "backend"
+    ],
+    "cSpell.words": [
+        "submiting"
+    ]
 }

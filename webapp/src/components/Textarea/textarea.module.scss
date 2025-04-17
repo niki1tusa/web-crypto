@@ -1,0 +1,11 @@
+@import '../Input/input.module.scss';
+
+.field {
+  .input {
+    width: 100%;
+    min-height: 150px;
+    max-width: none;
+    resize: vertical;
+
+  }
+}

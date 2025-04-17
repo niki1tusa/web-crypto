@@ -1,0 +1,15 @@
+@import '../../styles/variable.scss';
+@import '../../styles/mixins.scss';
+
+.alert{
+    padding: 10px;
+    border-radius: $borderRadiusSmall;
+    &.red{
+        background-color: rgb(240, 0, 0);
+        color: rgb(151, 5, 5);
+    }
+    &.green{
+        background-color: rgb(16, 189, 16);
+        color: rgb(6, 110, 6);
+    }
+}
