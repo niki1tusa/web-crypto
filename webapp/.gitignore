@@ -1,1 +1,5 @@
+.qodo
+dist
+.env
+# Dependencies
 node_modules

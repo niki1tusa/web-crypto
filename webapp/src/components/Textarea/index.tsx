@@ -14,7 +14,8 @@ export const Textarea = ({ name, label, formik}:{ name:string, label:string, for
     }} 
     name={name} 
     id={name}
-    value={value}/>
+    value={value}
+    disabled={formik.isSubmitting}/>
         {!!touched && !!error && <div className="text-red-700">{error}</div>}
   </div>
   )

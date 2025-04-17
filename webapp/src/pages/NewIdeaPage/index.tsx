@@ -5,9 +5,10 @@ import { Textarea } from "../../components/Textarea"
 import { useFormik } from "formik"
 import {withZodSchema} from "formik-validator-zod"
 import { trpc } from "../../lib/trpc"
+import { useState } from "react"
 export const NewIdeaPage = () => {
   const createIdea = trpc.createIdea.useMutation()
-
+  const [successMessage, setSuccessMessage] = useState(false)
 
   const formik = useFormik({
     initialValues: {
@@ -19,6 +20,12 @@ export const NewIdeaPage = () => {
     validate: withZodSchema(zCreateIdeaTrpcInput),
     onSubmit: async(value) => {
       await createIdea.mutateAsync(value)
+      formik.resetForm()
+      setSuccessMessage(true)
+
+      setTimeout(() => {
+        setSuccessMessage(false)
+      }, 3000);
     },
   })
 
@@ -36,7 +43,10 @@ export const NewIdeaPage = () => {
         <Input label="Description" name="description" formik={formik} />
         <Textarea label="Text" name="text" formik={formik} />
         {!formik.isValid && !!formik.submitCount &&<div className="text-red-700">Look on field, some field are invalid!</div>}
-        <button type="submit">create idea</button>
+      {successMessage?<div className="text-green-500">Idea is Created</div> : }
+        <button disabled={formik.isSubmitting} type="submit">
+         {formik.isSubmitting? 'submiting' : 'create idea'}
+          </button>
       </form>
     </Segment>
   )
