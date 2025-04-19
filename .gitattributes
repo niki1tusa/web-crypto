@@ -1,0 +1,39 @@
+# Установка стандартного поведения для автоматической нормализации окончаний строк
+* text=auto
+
+# Явное объявление текстовых файлов, которые всегда должны быть нормализованы и преобразованы
+# в родной формат окончаний строк при выгрузке.
+*.ts text
+*.tsx text
+*.js text
+*.jsx text
+*.json text
+*.md text
+*.css text
+*.scss text
+*.html text
+*.yml text
+*.yaml text
+*.sql text
+
+# Объявление файлов, которые всегда будут иметь CRLF окончания строк при выгрузке.
+*.bat text eol=crlf
+
+# Объявление файлов, которые всегда будут иметь LF окончания строк при выгрузке.
+*.sh text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Объявление бинарных файлов, которые не должны быть изменены.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.gz binary
