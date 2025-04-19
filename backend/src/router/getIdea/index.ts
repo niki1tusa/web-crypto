@@ -8,9 +8,12 @@ export const getIdeaTrpcRoute = trpc.procedure
         id: z.string(),
       }),
     )
-    .query(({ input }) => {
-      const idea = ideas.find(item => item.name === input.id)
-      console.log("hello")
-      return { idea: idea || null }
+    .query(async({ ctx, input }) => {
+      const idea = await ctx.prisma.idea.findUnique({
+        where: {
+          nick: input.id
+        }
+      })
+      return { idea }
     })
 

@@ -5,11 +5,19 @@ import { zCreateIdeaTrpcInput } from "./input"
 // коппия валидация с frontend для улучшением безопасности
 
 export const createIdeaTrpcRoute = trpc.procedure.input(zCreateIdeaTrpcInput)
-.mutation(({ input }) => {
-  if(ideas.find(idea=> idea.nick === input.nick )){
-    throw Error('Idea with this nick already exist!')
-  }
-  ideas.unshift(input)
+.mutation( async({ input, ctx }) => {
+
+  const existIdea = await ctx.prisma.idea.findUnique({
+    where: {
+      nick: input.nick
+    }
+  })
+if(existIdea){
+ throw Error('Idea with this nick already exist!')
+ }
+await ctx.prisma.idea.create({
+  data: input
+})
   return true
 })
  

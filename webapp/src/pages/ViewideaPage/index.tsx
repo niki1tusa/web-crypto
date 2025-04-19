@@ -3,6 +3,7 @@ import { viewTypeParams } from "../../lib/routes"
 import { trpc } from "../../lib/trpc"
 import scss from "./index.module.scss"
 import { Segment } from "../../components/Segment"
+import {format} from 'date-fns'
 
 export const Viewidea = () => {
   const { id } = useParams() as viewTypeParams
@@ -21,6 +22,7 @@ export const Viewidea = () => {
   }
   return (
     <Segment title={data.idea.name} description={data.idea.description}>
+      <div className={scss.createdAt}>Created at: {format(data.idea.createdAt, 'yyyy-MM-dd')}</div>
       <div
         className={scss.text}
         dangerouslySetInnerHTML={{ __html: data.idea.text }}
