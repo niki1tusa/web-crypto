@@ -12,4 +12,8 @@ export type viewTypeParams = typeof viewParams
 
 export const getViewIdeaRoute = ({ id }: { id: string }) => `/ideas/${id}`
 
-export const getNewIdeaRoute = () => "/ideas/new"
+export const getNewIdeaRoute = () => "/ideas/new";
+
+export const getSignUpRoute = () => "/sign-up";
+
+export const getSignInRoute = () => "/sign-in";

@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router"
 import "./styles/global.scss"
 import "./styles/_mixins.scss"
 import { NewIdeaPage } from "./pages/NewIdeaPage"
+import { SignUpPage } from "./pages/SignUpPage"
 export const App = () => {
   return (
     <TrpcProvider>
@@ -15,6 +16,7 @@ export const App = () => {
           <Route element={<Layout />}>
             <Route path={routes.getAllIdeaRoute()} element={<Allidea />} />
             <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />} />
+            <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
             <Route
               path={routes.getViewIdeaRoute(routes.viewParams)}
               element={<Viewidea />}
