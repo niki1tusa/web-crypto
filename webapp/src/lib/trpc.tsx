@@ -22,8 +22,9 @@ const trpcClient = trpc.createClient({
       url: "http://localhost:5433/trpc",
       headers: ()=>{
         const token = Cookies.get('token')
+
         return {
-          ...(token && {auth: `Bearer ${token}`})
+          ...(token && {authorization: `Bearer ${token}`})
         }
       }
     }),

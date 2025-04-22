@@ -9,12 +9,12 @@ import { ExpressRequest } from "../utils/types"
 
 const getCreateTrpcContext = 
 (appContext: AppContext) => {
- return ({ req }: trcpExpress.CreateExpressContextOptions) => ({
+ return ({ req }: trcpExpress.CreateExpressContextOptions) =>({
     ...appContext,
     me: (req as ExpressRequest).user || null,
-  })
-}
-type TrpcContext = ReturnType<ReturnType<typeof getCreateTrpcContext>>
+  }
+)}
+type TrpcContext = inferAsyncReturnType<ReturnType<typeof getCreateTrpcContext>>
 
 export const trpc = initTRPC.context<TrpcContext>().create({
   transformer: superjson,
