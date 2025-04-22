@@ -1,5 +1,7 @@
 extends:
   - react-app
+plugins:
+ - node
 parserOptions:
   project: ./tsconfig.json
 overrides:

@@ -2,6 +2,7 @@ import { type Express } from "express"
 import { AppContext } from "./ctx"
 import { Passport } from "passport"
 import { ExtractJwt, Strategy as JWTStategy } from "passport-jwt"
+import { env } from "./env"
 
 //в payload лежит зашифровка, был зашифрован id user
 export const applyPassportToExpressApp = (
@@ -13,7 +14,7 @@ export const applyPassportToExpressApp = (
   passport.use(
     new JWTStategy(
       {
-        secretOrKey: "token",
+        secretOrKey: env.JWT_SECRET,
         jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("Bearer"),
       },
       (JWTPayload: string, done) => {
