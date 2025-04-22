@@ -2,6 +2,7 @@ import type { TrpcRouter } from "@app/backend/src/router"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { createTRPCReact, httpBatchLink } from "@trpc/react-query"
 import superjson from 'superjson'
+import Cookies from "js-cookie"
 
 export const trpc = createTRPCReact<TrpcRouter>()
 const queryClient = new QueryClient({
@@ -19,6 +20,12 @@ const trpcClient = trpc.createClient({
     httpBatchLink({ 
       transformer: superjson,
       url: "http://localhost:5433/trpc",
+      headers: ()=>{
+        const token = Cookies.get('token')
+        return {
+          ...(token && {auth: `Bearer ${token}`})
+        }
+      }
     }),
   ],
 })

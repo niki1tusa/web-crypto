@@ -8,6 +8,7 @@ import "./styles/global.scss"
 import "./styles/_mixins.scss"
 import { NewIdeaPage } from "./pages/NewIdeaPage"
 import { SignUpPage } from "./pages/SignUpPage"
+import { SignInPage } from "./pages/SignInPage"
 export const App = () => {
   return (
     <TrpcProvider>
@@ -17,6 +18,7 @@ export const App = () => {
             <Route path={routes.getAllIdeaRoute()} element={<Allidea />} />
             <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />} />
             <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
+            <Route path={routes.getSignInRoute()} element={<SignInPage/>}/>
             <Route
               path={routes.getViewIdeaRoute(routes.viewParams)}
               element={<Viewidea />}
