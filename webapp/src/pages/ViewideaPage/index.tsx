@@ -11,6 +11,7 @@ export const Viewidea = () => {
   const { data, error, isLoading, isFetching, isError } = trpc.getIdea.useQuery(
     { id },
   )
+  
   if (isLoading || isFetching) {
     return <span>App is loading!</span>
   }
@@ -23,6 +24,7 @@ export const Viewidea = () => {
   return (
     <Segment title={data.idea.name} description={data.idea.description}>
       <div className={scss.createdAt}>Created at: {format(data.idea.createdAt, 'yyyy-MM-dd')}</div>
+     <div className={scss.author}>Author: {data.idea.author.nick}</div>
       <div
         className={scss.text}
         dangerouslySetInnerHTML={{ __html: data.idea.text }}
