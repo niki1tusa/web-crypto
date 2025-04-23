@@ -2,9 +2,6 @@ import { useNavigate, useParams } from "react-router"
 import { EditIdeaTypeParams, getViewIdeaRoute } from "../../lib/routes"
 import { trpc } from "../../lib/trpc"
 import type {TrpcRouteOutput} from '../../.././../backend/src/router/index.ts'
-import { useFormik } from "formik"
-import { withZodSchema } from "formik-validator-zod"
-import { useState } from "react"
 import { Alert } from "../../components/Alert/index.tsx"
 import { Button } from "../../components/Button/index.tsx"
 import { FormItems } from "../../components/FormItems/index.tsx"
@@ -13,25 +10,23 @@ import { Segment } from "../../components/Segment/index.tsx"
 import { Textarea } from "../../components/Textarea/index.tsx"
 import { zUpdateIdeaTrpcInput } from "../../../../backend/src/router/updateIdea/input.ts"
 import { pick } from "lodash"
+import { useForm } from "../../lib/form.tsx"
 
 // omit это обратная функция от extend от ZOD (omit выкидывает свойство)
 const EditIdeaComponent = ({idea}: {idea: NonNullable<TrpcRouteOutput['getIdea']['idea']>}) =>{
     const navigate = useNavigate()
   const updateIdea = trpc.updateIdea.useMutation()
-  const [submitError, setSubmitError] = useState<string | null>(null)
 
-  const formik = useFormik({
+
+  const {formik, alertProps, btnProps} = useForm({
     initialValues: pick(idea, ['name', 'nick', 'description', 'text']),
-    validate: withZodSchema(zUpdateIdeaTrpcInput.omit({ideaId: true})),
+    validationSchema: zUpdateIdeaTrpcInput.omit({ideaId: true}),
     onSubmit: async(value) => {
-      try{
-      setSubmitError(null)
       await updateIdea.mutateAsync({ideaId: idea.id, ...value})
         navigate(getViewIdeaRoute({ideaNick: value.nick}))
-      } catch(error: any){
-        setSubmitError(error.message)
-      }
     },
+    resetOnSuccess: false,
+    showValidationAlert: true
   })
 
   return (
@@ -48,9 +43,8 @@ const EditIdeaComponent = ({idea}: {idea: NonNullable<TrpcRouteOutput['getIdea']
         <Input label="Nick" name="nick" formik={formik} />
         <Input label="Description" name="description" formik={formik} maxWidth={500}/>
         <Textarea label="Text" name="text" formik={formik} />
-        {!formik.isValid && !!formik.submitCount &&<div className="text-red-700">Look on field, some field are invalid!</div>}
-        {!!submitError && <Alert color="red">{submitError}</Alert> }
-        <Button loading={formik.isSubmitting}> update a new Idea</Button>
+<Alert {...alertProps}/>
+<Button {...btnProps}>Update Idea</Button>
         </FormItems>
       </form>
     </Segment>
@@ -81,7 +75,7 @@ export const EditIdeaPage = () => {
         return <span>Idea not found</span>
       } 
     const idea = getIdeaResult.data.idea
-    const me = getMeResult.data.me
+    const me = getMeResult.data.me 
       if (!me) {
         return <span>Only for authorized</span>
       }
