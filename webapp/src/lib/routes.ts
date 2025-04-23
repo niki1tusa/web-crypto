@@ -8,8 +8,8 @@ const getParams = <T extends Record<string, boolean>>(object: T) => {
 export const getAllIdeaRoute = () => "/"
 
 export const viewParams = getParams({ ideaNick: true })
-export type viewTypeParams = typeof viewParams
-export const getViewIdeaRoute = ({ ideaNick }: viewTypeParams) => `/ideas/${ideaNick}`
+export type ViewTypeParams = typeof viewParams
+export const getViewIdeaRoute = ({ ideaNick }: ViewTypeParams) => `/ideas/${ideaNick}`
 
 export const editIdeaParams = getParams({ ideaNick: true })
 export type EditIdeaTypeParams = typeof editIdeaParams

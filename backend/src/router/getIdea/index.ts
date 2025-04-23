@@ -22,19 +22,5 @@ export const getIdeaTrpcRoute = trpc.procedure
           }
         }
       })
-    console.log(idea);
-    
       return { idea }
     })
-
-    // const ideaByName = await ctx.prisma.idea.findUnique({
-    //   where: { name: input.ideaNick },
-    //   select: { nick: true }
-    // });
-    
-    // if (!ideaByName) return { idea: null };
-    
-    // const idea = await ctx.prisma.idea.findUnique({
-    //   where: { nick: ideaByName.nick },
-    //   include: { /* ... */ }
-    // });

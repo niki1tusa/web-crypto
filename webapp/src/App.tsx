@@ -11,9 +11,12 @@ import { SignUpPage } from "./pages/SignUpPage"
 import { SignInPage } from "./pages/SignInPage"
 import { LogOutPage } from "./pages/LogOutPage"
 import { EditIdeaPage } from "./pages/EditIdeaPage"
+import { AppContextProvider } from "./lib/ctx"
+import { NotFoundPage } from "./pages/NotFoundPage"
 export const App = () => {
   return (
     <TrpcProvider>
+      <AppContextProvider>
       <BrowserRouter>
         <Routes>
         <Route path={routes.getLogOutRoute()} element={<LogOutPage/>} />
@@ -24,9 +27,11 @@ export const App = () => {
             <Route path={routes.getSignInRoute()} element={<SignInPage/>}/>
             <Route path={routes.getViewIdeaRoute(routes.viewParams)} element={<Viewidea />}/>
             <Route path={routes.editIdeaRoute(routes.editIdeaParams)} element={<EditIdeaPage/>}/>
+            <Route path="*" element={<NotFoundPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
+      </AppContextProvider>
     </TrpcProvider>
   )
 }

@@ -1,11 +1,11 @@
 import { Link, Outlet } from "react-router"
 import * as routes from "../../lib/routes"
 import scss from "./index.module.scss"
-import { trpc } from "../../lib/trpc"
+
+import { useMe } from "../../lib/ctx"
 
 export const Layout = () => {
-  const {data, isLoading, isFetching, isError} = trpc.getMe.useQuery()
-
+  const me = useMe()
   return (
     <div className={scss.layout}>
       <div className={scss.navigation}>
@@ -16,7 +16,7 @@ export const Layout = () => {
               All Idea
             </Link>
           </li>
-{    isLoading || isFetching || isError? null: data.me? (
+{ me? (
   <>
    <li className={scss.item}>
             <Link className={scss.link} to={routes.getNewIdeaRoute()}>
@@ -25,7 +25,7 @@ export const Layout = () => {
           </li>
           <li className={scss.item}>
             <Link className={scss.link} to={routes.getLogOutRoute()}>
-             Log out ({data.me.nick})
+             Log out ({me.nick})
             </Link>
           </li>
   </>

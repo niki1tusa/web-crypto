@@ -6,8 +6,7 @@ export const updateIdeaTrpcRoute = trpc.procedure
   .mutation(async ({ ctx, input }) => {
     
     const { ideaId, ...ideaInput } = input
-    console.log(ideaId)
-    console.log(ideaInput)
+
 
     if (!ctx.me) throw new Error("ERRORisk")
 
