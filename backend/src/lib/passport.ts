@@ -3,7 +3,7 @@ import { AppContext } from "./ctx"
 import { Passport } from "passport"
 import { ExtractJwt, Strategy as JWTStategy } from "passport-jwt"
 import { env } from "./env"
-import { log } from "console"
+
 
 //в payload лежит зашифровка, был зашифрован id user
 export const applyPassportToExpressApp = (

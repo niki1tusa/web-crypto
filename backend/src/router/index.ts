@@ -1,3 +1,4 @@
+import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { trpc } from "../lib/trpc"
 // @index('./**/index.ts', f=>`import{ ${f.path.split('/').slice(0,-1).pop()}TrpcRoute } from '${f.path.split('/').slice(0,-1).join('/')}';`)
 import{ createIdeaTrpcRoute } from './createIdea';
@@ -6,6 +7,7 @@ import{ getIdeasTrpcRoute } from './getIdeas';
 import{ getMeTrpcRoute } from './getMe';
 import{ signInTrpcRoute } from './signIn';
 import{ signUpTrpcRoute } from './signUp';
+import{ updateIdeaTrpcRoute } from './updateIdea';
 // @endindex
 
 export const trpcRouter = trpc.router({
@@ -16,9 +18,12 @@ getIdeas: getIdeasTrpcRoute,
 getMe: getMeTrpcRoute,
 signIn: signInTrpcRoute,
 signUp: signUpTrpcRoute,
+updateIdea: updateIdeaTrpcRoute,
 // @endindex
 })
 
 // run depend Generate index: "CTRL + 7" !!!!!!
 
 export type TrpcRouter = typeof trpcRouter
+export type TrpcRouteInput = inferRouterInputs<TrpcRouter>
+export type TrpcRouteOutput = inferRouterOutputs<TrpcRouter>

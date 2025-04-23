@@ -14,9 +14,6 @@ void (async () => {
   const app = express()
   app.use(cors())
 
-  app.get("/ping", (req, res) => {
-    res.send("pong")
-  })
   applyPassportToExpressApp(app, ctx)
   await applyTrpcToExpressApp(app, ctx, trpcRouter)
 

@@ -11,6 +11,8 @@ import { zSignInTrpcInput } from "../../../../backend/src/router/signIn/input"
 import Cookies from 'js-cookie'
 import { useNavigate } from "react-router"
 import { getAllIdeaRoute } from "../../lib/routes"
+
+
 export const SignInPage = () => {
   const navigate = useNavigate()
   const trpcUtils = trpc.useUtils()

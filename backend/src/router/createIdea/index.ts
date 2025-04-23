@@ -8,11 +8,13 @@ export const createIdeaTrpcRoute = trpc.procedure.input(zCreateIdeaTrpcInput)
   if(!ctx.me) {
     throw Error('NOT AUTH')
   }
+
   const existIdea = await ctx.prisma.idea.findUnique({
     where: {
       nick: input.nick
     }
-  })
+  })  
+
 if(existIdea){
  throw Error('Idea with this nick already exist!')
  }

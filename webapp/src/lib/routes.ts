@@ -7,10 +7,17 @@ const getParams = <T extends Record<string, boolean>>(object: T) => {
 
 export const getAllIdeaRoute = () => "/"
 
-export const viewParams = getParams({ id: true })
+export const viewParams = getParams({ ideaNick: true })
 export type viewTypeParams = typeof viewParams
+export const getViewIdeaRoute = ({ ideaNick }: viewTypeParams) => `/ideas/${ideaNick}`
 
-export const getViewIdeaRoute = ({ id }: { id: string }) => `/ideas/${id}`
+export const editIdeaParams = getParams({ ideaNick: true })
+export type EditIdeaTypeParams = typeof editIdeaParams
+export const editIdeaRoute = ({ ideaNick }: EditIdeaTypeParams) => `/ideas/${ideaNick}/edit`
+
+
+
+
 
 export const getNewIdeaRoute = () => "/ideas/new";
 

@@ -1,19 +1,17 @@
 import { z } from "zod"
 import { trpc } from "../../lib/trpc"
 
-
-/// нужно поменять where: name - на where: nick. Так как name не уникальное
 export const getIdeaTrpcRoute = trpc.procedure
     .input(
       z.object({
-        id: z.string(),
+        ideaNick: z.string(),
       }),
     )
     .query(async({ ctx, input }) => {
 
-      const idea = await ctx.prisma.idea.findFirst({
+      const idea = await ctx.prisma.idea.findUnique({
         where: {
-          name: input.id
+        nick: input.ideaNick
         },
         include: {
           author: {
@@ -24,7 +22,19 @@ export const getIdeaTrpcRoute = trpc.procedure
           }
         }
       })
+    console.log(idea);
     
       return { idea }
     })
 
+    // const ideaByName = await ctx.prisma.idea.findUnique({
+    //   where: { name: input.ideaNick },
+    //   select: { nick: true }
+    // });
+    
+    // if (!ideaByName) return { idea: null };
+    
+    // const idea = await ctx.prisma.idea.findUnique({
+    //   where: { nick: ideaByName.nick },
+    //   include: { /* ... */ }
+    // });

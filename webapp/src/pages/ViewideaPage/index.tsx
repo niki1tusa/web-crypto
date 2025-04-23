@@ -1,34 +1,52 @@
 import { useParams } from "react-router"
-import { viewTypeParams } from "../../lib/routes"
+import { editIdeaRoute, viewTypeParams } from "../../lib/routes"
 import { trpc } from "../../lib/trpc"
 import scss from "./index.module.scss"
 import { Segment } from "../../components/Segment"
 import {format} from 'date-fns'
+import { LinkBtn } from "../../components/Button"
+
 
 export const Viewidea = () => {
-  const { id } = useParams() as viewTypeParams
+  const { ideaNick } = useParams() as viewTypeParams
+  const getIdeaResult = trpc.getIdea.useQuery({ ideaNick })
+  const getMeResult = trpc.getMe.useQuery()      
 
-  const { data, error, isLoading, isFetching, isError } = trpc.getIdea.useQuery(
-    { id },
-  )
+
   
-  if (isLoading || isFetching) {
-    return <span>App is loading!</span>
+  if (getIdeaResult.isLoading || getIdeaResult.isFetching || getMeResult.isLoading || getMeResult.isFetching) {
+    return <span>Loading...</span>
   }
-  if (isError) {
-    return <span>Error!!!{error.message}</span>
+
+  if (getIdeaResult.isError) {
+    return <span>Error: {getIdeaResult.error.message}</span>
   }
-  if (!data || !data.idea) {
-    return <span>idea not found</span>
+
+  if (getMeResult.isError) {
+    return <span>Error: {getMeResult.error.message}</span>
   }
+
+  if (!getIdeaResult.data.idea) {
+    return <span>Idea not found</span>
+  }
+
+  const idea = getIdeaResult.data.idea
+  const me = getMeResult.data.me
   return (
-    <Segment title={data.idea.name} description={data.idea.description}>
-      <div className={scss.createdAt}>Created at: {format(data.idea.createdAt, 'yyyy-MM-dd')}</div>
-     <div className={scss.author}>Author: {data.idea.author.nick}</div>
+    <Segment title={idea.name} description={idea.description}>
+      <div className={scss.createdAt}>Created at: {format(idea.createdAt, 'yyyy-MM-dd')}</div>
+     <div className={scss.author}>Author: {idea.author.nick}</div>
       <div
         className={scss.text}
-        dangerouslySetInnerHTML={{ __html: data.idea.text }}
+        dangerouslySetInnerHTML={{ __html: idea.text }}
       />
+      {
+        me?.id === idea.authorId && (
+          <div className={scss.editButton}>
+            <LinkBtn to={editIdeaRoute({ideaNick: idea.nick})}>Edit Idea</LinkBtn>
+          </div>
+        )
+      }
     </Segment>
   )
 }

@@ -10,6 +10,7 @@ import { NewIdeaPage } from "./pages/NewIdeaPage"
 import { SignUpPage } from "./pages/SignUpPage"
 import { SignInPage } from "./pages/SignInPage"
 import { LogOutPage } from "./pages/LogOutPage"
+import { EditIdeaPage } from "./pages/EditIdeaPage"
 export const App = () => {
   return (
     <TrpcProvider>
@@ -22,6 +23,7 @@ export const App = () => {
             <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
             <Route path={routes.getSignInRoute()} element={<SignInPage/>}/>
             <Route path={routes.getViewIdeaRoute(routes.viewParams)} element={<Viewidea />}/>
+            <Route path={routes.editIdeaRoute(routes.editIdeaParams)} element={<EditIdeaPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
