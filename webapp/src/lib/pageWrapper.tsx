@@ -7,8 +7,9 @@ import { useNavigate } from "react-router"
 import { useEffect } from "react"
 import { getAllIdeaRoute } from "./routes"
 import { ErrorPageComponent } from "../components/ErrorPageCompnent"
-import { NotFoundPage } from "../pages/NotFoundPage"
+import { NotFoundPage } from "../pages/other/NotFoundPage"
 
+// class
 class CheckExistError extends Error{}
 const checkExistFnc = <T,>(value: T, message?: string): NonNullable<T> => {
     if(!value){
@@ -24,8 +25,9 @@ const checkAccessFnc = <T,>(value: T, message?: string): NonNullable<T> => {
     return value
 }
 
+class GetAuthorizedMeError extends Error{}
 
-
+//type
 type Props = Record<string, any>
 type QueryResult = UseTRPCQueryResult<any, any>
 type QuerySuccessResult<TQueryResult extends QueryResult> =
@@ -39,6 +41,7 @@ type HelperProps<TQueryResult extends QueryResult | undefined> = {
 type SetPropsProps<TQueryResult extends QueryResult | undefined> = HelperProps<TQueryResult>&{
     checkExist: typeof checkExistFnc
     checkAccess: typeof checkAccessFnc
+    getAuthorizedMe: (message?: string)=> NonNullable<AppContext['me']>
 }
 type PageWrapperProps<
   TProps extends Props,
@@ -131,8 +134,14 @@ const PageWrapper = <
       )
     }
   }
+  const getAuthorizedMe = (message?: string)=>{
+    if(!ctx.me){
+      throw new GetAuthorizedMeError(message)
+    }
+    return ctx.me
+  }
 try {
-    const props = setProps?.({...helperProps, checkExist: checkExistFnc, checkAccess: checkAccessFnc}) as TProps
+    const props = setProps?.({...helperProps, checkExist: checkExistFnc, checkAccess: checkAccessFnc, getAuthorizedMe}) as TProps
     return <Page {...props}/>
 } catch(error) {
     if(error instanceof CheckExistError){
@@ -141,6 +150,9 @@ try {
     if(error instanceof CheckAccessError){
         return <ErrorPageComponent title={checkAccessTitle} message={error.message || checkAccessMessage}/>
     }
+    if(error instanceof GetAuthorizedMeError){
+      return <ErrorPageComponent title={authorizedOnlyTitle} message={error.message || authorizedOnlyMessage}/>
+  }
     throw error
 }
 }

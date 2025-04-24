@@ -24,6 +24,11 @@ export const Layout = () => {
             </Link>
           </li>
           <li className={scss.item}>
+            <Link className={scss.link} to={routes.editProfileRoute()}>
+              Edit Profile
+            </Link>
+          </li>
+          <li className={scss.item}>
             <Link className={scss.link} to={routes.getLogOutRoute()}>
              Log out ({me.nick})
             </Link>
