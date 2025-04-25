@@ -4,10 +4,10 @@ import cn from 'classnames'
 
 
 export type BtnProps = { children: React.ReactNode; loading?: boolean }
-export const Button = ({children, loading = false}: BtnProps) => {
+export const Button = ({children, loading = true}: BtnProps) => {
   return (
-    <button className={cn({[styles.button]: true, [styles.disabled]: loading})} type="submit" disabled={loading}>
-{loading? 'Submiting...' :children}
+    <button className={cn({[styles.button]: true, [styles.disabled]: loading, [styles.loading]: loading})} type="submit" disabled={loading}>
+<span className={styles.text}>{children}</span>
     </button>
   )
 }

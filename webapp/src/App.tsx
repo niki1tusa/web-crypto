@@ -1,7 +1,7 @@
 import * as routes from "./lib/routes"
 import { TrpcProvider } from "./lib/trpc"
 import { Layout } from "./components/Layout"
-import { Allidea } from "./pages/ideas/AllideasPage"
+import { AllideasPage } from "./pages/ideas/AllideasPage"
 import { Viewidea } from "./pages/ideas/ViewideaPage"
 import { BrowserRouter, Routes, Route } from "react-router"
 import "./styles/global.scss"
@@ -22,7 +22,7 @@ export const App = () => {
         <Routes>
         <Route path={routes.getLogOutRoute()} element={<LogOutPage/>} />
           <Route element={<Layout />}>
-            <Route path={routes.getAllIdeaRoute()} element={<Allidea />} />
+            <Route path={routes.getAllIdeasRoute()} element={<AllideasPage />} />
             <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />} />
             <Route path={routes.getSignUpRoute()} element={<SignUpPage />} />
             <Route path={routes.getSignInRoute()} element={<SignInPage/>}/>

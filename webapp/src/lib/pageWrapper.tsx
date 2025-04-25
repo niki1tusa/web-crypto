@@ -5,9 +5,10 @@ import {
 import { AppContext, useAppContext } from "./ctx"
 import { useNavigate } from "react-router"
 import { useEffect } from "react"
-import { getAllIdeaRoute } from "./routes"
+import { getAllIdeasRoute } from "./routes"
 import { ErrorPageComponent } from "../components/ErrorPageCompnent"
 import { NotFoundPage } from "../pages/other/NotFoundPage"
+import { Loader } from "../components/Loader"
 
 // class
 class CheckExistError extends Error{}
@@ -88,12 +89,12 @@ const PageWrapper = <
 
   useEffect(() => {
     if (redirectNeeded) {
-      navigate(getAllIdeaRoute(), { replace: true })
+      navigate(getAllIdeasRoute(), { replace: true })
     }
   }, [redirectNeeded, navigate])
 
   if (queryResult?.isLoading || queryResult?.isFetching || redirectNeeded) {
-    return <p>Loading...</p>
+    return <Loader type="page"/>
   }
 
   if (queryResult?.isError) {
@@ -168,4 +169,4 @@ export const withPageWrapper = <
     return () => <PageWrapper {...pageWrapperProps} Page={Page} />
   }
 }
-// Page это 90% props так как это страница (EditPage, AllIdeaPage)
+// Page это 90% props так как это страница (EditPage, AllIdeasPage)

@@ -7,7 +7,7 @@ import { Button } from "../../../components/Button"
 import Cookies from "js-cookie"
 import { useForm } from "../../../lib/form"
 import { withPageWrapper } from "../../../lib/pageWrapper"
-import { zSignInTrpcInput } from "@app/backend/src/router/signIn/input"
+import { zSignInTrpcInput } from "../../../../../backend/src/router/auth/signIn/input"
 
 export const SignInPage = withPageWrapper({
 redirectAuthorized: true

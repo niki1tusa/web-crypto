@@ -7,7 +7,7 @@ import { Button } from "../../../components/Button"
 import { FormItems } from "../../../components/FormItems"
 import { useForm } from "../../../lib/form"
 import { withPageWrapper } from "../../../lib/pageWrapper"
-import { zCreateIdeaTrpcInput } from "@app/backend/src/router/createIdea/input"
+import { zCreateIdeaTrpcInput } from "../../../../../backend/src/router/ideas/createIdea/input"
 
 export const NewIdeaPage = withPageWrapper({
   authorizedOnly: true,

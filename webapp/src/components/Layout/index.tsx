@@ -3,7 +3,10 @@ import * as routes from "../../lib/routes"
 import scss from "./index.module.scss"
 
 import { useMe } from "../../lib/ctx"
+import { createRef } from "react"
 
+
+export const layoutContentRef = createRef<HTMLDivElement>()
 export const Layout = () => {
   const me = useMe()
   return (
@@ -12,7 +15,7 @@ export const Layout = () => {
         <div className={scss.logo}>Idea</div>
         <ul className={scss.menu}>
           <li className={scss.item}>
-            <Link className={scss.link} to={routes.getAllIdeaRoute()}>
+            <Link className={scss.link} to={routes.getAllIdeasRoute()}>
               All Idea
             </Link>
           </li>
@@ -52,7 +55,7 @@ export const Layout = () => {
 }
         </ul>
       </div>
-      <div className={scss.content}>
+      <div className={scss.content} ref={layoutContentRef}>
         <Outlet />
       </div>
     </div>

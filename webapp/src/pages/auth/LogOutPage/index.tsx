@@ -3,6 +3,7 @@ import { trpc } from "../../../lib/trpc"
 import { useEffect } from "react"
 import Cookies from "js-cookie"
 import { getSignInRoute } from "../../../lib/routes"
+import { Loader } from "../../../components/Loader"
 
 export const LogOutPage = () => {
   const navigate = useNavigate()
@@ -13,9 +14,5 @@ export const LogOutPage = () => {
       navigate(getSignInRoute())
     })
   }, [])
-  return (
-    <div>
-      Loading...
-    </div>
-  )
+  return <Loader type="page"/>
 }

@@ -8,7 +8,7 @@ import z from "zod"
 import Cookies from "js-cookie"
 import { useForm } from "../../../lib/form"
 import { withPageWrapper } from "../../../lib/pageWrapper"
-import { zSignUpTrpcInput } from "@app/backend/src/router/signUp/input"
+import { zSignUpTrpcInput } from "../../../../../backend/src/router/auth/signUp/input"
 
 export const SignUpPage = withPageWrapper({
  redirectAuthorized: true

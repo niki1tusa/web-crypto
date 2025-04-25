@@ -5,7 +5,7 @@ const getParams = <T extends Record<string, boolean>>(object: T) => {
   ) as Record<keyof T, string>
 }
 
-export const getAllIdeaRoute = () => "/"
+export const getAllIdeasRoute = () => "/"
 
 export const viewParams = getParams({ ideaNick: true })
 export type ViewTypeParams = typeof viewParams
