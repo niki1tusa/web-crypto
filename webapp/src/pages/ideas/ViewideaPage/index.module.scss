@@ -19,6 +19,14 @@
   font-style: 12px;
   margin-bottom: 10px;
 }
+.likes {
+  margin-top: 20px;
+
+  .likeButton {
+    @include link;
+  }
+}
+
 .editButton{
   margin-top: 25px;
 }

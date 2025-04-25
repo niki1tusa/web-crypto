@@ -7,10 +7,23 @@ import { Alert } from "../../../components/Alert"
 import InfiniteScroll from "react-infinite-scroller"
 import { layoutContentRef } from "../../../components/Layout"
 import { Loader } from "../../../components/Loader"
+import { useForm } from "../../../lib/form"
+import { zGetIdeasTrpcInput } from "@app/backend/src/router/ideas/getIdeas/input"
+import { Input } from "../../../components/Input"
+import { HighlightText } from "../../../components/HighlightText"
+import { useDebounce } from "../../../lib/useDebounce"
+
 export function AllideasPage() {
-  const { data, error, isLoading, isFetching, isError,  hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching} =
+  const {formik} = useForm({
+    initialValues: {search: ''},
+    validationSchema: zGetIdeasTrpcInput.pick({search: true})
+  })
+
+  const debouncedSearch = useDebounce({value: formik.values.search, time: 400})
+
+  const { data, error, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage, isRefetching} =
     trpc.getIdeas.useInfiniteQuery({
-      limit: 2
+    search: debouncedSearch
     },
   {
     getNextPageParam: (lastPage)=>{
@@ -20,12 +33,16 @@ export function AllideasPage() {
   )
   return (
     <Segment title="All Ideas">
+      <div className={scss.filter}>
+        <Input maxWidth={'100%'} label="Search" name="search" formik={formik}/>
+      </div>
       {isLoading || isRefetching? (
        <Loader type="page"/>
       ): isError?(
         <Alert color='red'>{error.message}</Alert>
+      ): !data.pages[0].ideas.length? (
+<Alert color='brown'>Nothing found by search</Alert>
       ):
-
      ( <div className={scss.ideas}>      
      <InfiniteScroll threshold={250} loadMore={()=>{
       if(!isFetchingNextPage && hasNextPage){
@@ -49,12 +66,15 @@ export function AllideasPage() {
                   className={scss.ideaLink}
                   to={getViewIdeaRoute({ ideaNick: item.nick })}
                 >
-                  {item.nick}
+                   <HighlightText
+                    text={item.nick} 
+                    highlight={formik.values.search || ''} 
+                  />
                 </Link>
               }
               description={item.description}
             />  
-          
+        <div className="flex gap-1">Likes: {item.totalLikes}</div> 
           </div>
         ))}
   </InfiniteScroll>

@@ -4,7 +4,7 @@ import { editIdeaRoute, ViewTypeParams } from "../../../lib/routes"
 import scss from "./index.module.scss"
 import { Segment } from "../../../components/Segment"
 import {format} from 'date-fns'
-import { LinkBtn } from "../../../components/Button"
+import { LikeBtn, LinkBtn } from "../../../components/Button"
 
 import { trpc } from "../../../lib/trpc"
 import { withPageWrapper } from "../../../lib/pageWrapper"
@@ -17,6 +17,7 @@ useQuery: ()=>{
     ideaNick
   })
 },
+showLoaderOnFetching: false,
 setProps: ({queryResult, ctx, checkExist})=>({
   idea: checkExist(queryResult.data.idea, 'Idea not found'),
   me: ctx.me
@@ -34,6 +35,15 @@ setProps: ({queryResult, ctx, checkExist})=>({
         className={scss.text}
         dangerouslySetInnerHTML={{ __html: idea.text }}
       />
+      <div className={scss.likes}>
+        Likes: {idea.totalLikes}
+        {me && (
+          <>
+            <br />
+            <LikeBtn idea={idea}/>
+          </>
+        )}
+      </div>
       {
         me?.id === idea.authorId && (
           <div className={scss.editButton}>

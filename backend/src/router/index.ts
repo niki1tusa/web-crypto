@@ -7,6 +7,7 @@ import{ signUpTrpcRoute } from './auth/signUp';
 import{ createIdeaTrpcRoute } from './ideas/createIdea';
 import{ getIdeaTrpcRoute } from './ideas/getIdea';
 import{ getIdeasTrpcRoute } from './ideas/getIdeas';
+import{ setIdeaLikeTrpcRoute } from './ideas/setIdeaLike';
 import{ updateIdeaTrpcRoute } from './ideas/updateIdea';
 import{ updatePasswordTrpcRoute } from './updatePassword';
 import{ updateProfileTrpcRoute } from './updateProfile';
@@ -20,6 +21,7 @@ signUp: signUpTrpcRoute,
 createIdea: createIdeaTrpcRoute,
 getIdea: getIdeaTrpcRoute,
 getIdeas: getIdeasTrpcRoute,
+setIdeaLike: setIdeaLikeTrpcRoute,
 updateIdea: updateIdeaTrpcRoute,
 updatePassword: updatePasswordTrpcRoute,
 updateProfile: updateProfileTrpcRoute,
