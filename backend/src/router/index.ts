@@ -4,10 +4,12 @@ import { trpc } from "../lib/trpc"
 import{ getMeTrpcRoute } from './auth/getMe';
 import{ signInTrpcRoute } from './auth/signIn';
 import{ signUpTrpcRoute } from './auth/signUp';
+import{ blockIdeaTrpcRoute } from './ideas/blockIdea';
 import{ createIdeaTrpcRoute } from './ideas/createIdea';
 import{ getIdeaTrpcRoute } from './ideas/getIdea';
 import{ getIdeasTrpcRoute } from './ideas/getIdeas';
 import{ setIdeaLikeTrpcRoute } from './ideas/setIdeaLike';
+import{ unBlockIdeaTrpcRoute } from './ideas/unBlockIdea';
 import{ updateIdeaTrpcRoute } from './ideas/updateIdea';
 import{ updatePasswordTrpcRoute } from './updatePassword';
 import{ updateProfileTrpcRoute } from './updateProfile';
@@ -18,10 +20,12 @@ export const trpcRouter = trpc.router({
 getMe: getMeTrpcRoute,
 signIn: signInTrpcRoute,
 signUp: signUpTrpcRoute,
+blockIdea: blockIdeaTrpcRoute,
 createIdea: createIdeaTrpcRoute,
 getIdea: getIdeaTrpcRoute,
 getIdeas: getIdeasTrpcRoute,
 setIdeaLike: setIdeaLikeTrpcRoute,
+unBlockIdea: unBlockIdeaTrpcRoute,
 updateIdea: updateIdeaTrpcRoute,
 updatePassword: updatePasswordTrpcRoute,
 updateProfile: updateProfileTrpcRoute,

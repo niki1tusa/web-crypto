@@ -24,3 +24,5 @@ export const getSignInRoute = () => "/sign-in";
 export const getLogOutRoute = () => "/log-out"
 
 export const editProfileRoute = () => "/edit-profile"
+
+export const getAllBlockIdeasRoute = () => "/block-ideas"

@@ -5,12 +5,14 @@ import { trpcRouter } from "./router"
 import {createAppContext, type AppContext} from "./lib/ctx"
 import { applyPassportToExpressApp } from "./lib/passport"
 import { env } from "./lib/env"
+import { presentDb } from "./scripts/presentDb"
 
 
 void (async () => {
   let ctx: AppContext | null = null
   try {
   ctx = createAppContext()
+  await presentDb(ctx)
   const app = express()
   app.use(cors())
 

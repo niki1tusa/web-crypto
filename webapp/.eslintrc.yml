@@ -17,6 +17,7 @@ rules:
             - '@app/backend/**'
             - '!@app/backend/**'
             - '!@app/backend/**/input'
+            - '!@app/backend/src/utils/canBlockIdea'
           allowTypeImports: true
           message: 'Only types and input schemas are allowed to be imported from backend workspace'
 

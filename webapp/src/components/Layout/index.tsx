@@ -4,7 +4,7 @@ import scss from "./index.module.scss"
 
 import { useMe } from "../../lib/ctx"
 import { createRef } from "react"
-
+import { canBlockIdea} from "../../../../backend/src/utils/can"
 
 export const layoutContentRef = createRef<HTMLDivElement>()
 export const Layout = () => {
@@ -19,40 +19,45 @@ export const Layout = () => {
               All Idea
             </Link>
           </li>
-{ me? (
-  <>
-   <li className={scss.item}>
-            <Link className={scss.link} to={routes.getNewIdeaRoute()}>
-              Add Idea
-            </Link>
-          </li>
-          <li className={scss.item}>
-            <Link className={scss.link} to={routes.editProfileRoute()}>
-              Edit Profile
-            </Link>
-          </li>
-          <li className={scss.item}>
-            <Link className={scss.link} to={routes.getLogOutRoute()}>
-             Log out ({me.nick})
-            </Link>
-          </li>
-  </>
-):(
-  <>
-       <li className={scss.item}>
-            <Link className={scss.link} to={routes.getSignUpRoute()}>
-             Sign Up
-            </Link>
-          </li>
-          <li className={scss.item}>
-            <Link className={scss.link} to={routes.getSignInRoute()}>
-             Sign In
-            </Link>
-          </li>
-  </>
-)     
-
-}
+          {me ? (
+            <>
+              <li className={scss.item}>
+                <Link className={scss.link} to={routes.getNewIdeaRoute()}>
+                  Add Idea
+                </Link>
+              </li>
+              <li className={scss.item}>
+                <Link className={scss.link} to={routes.editProfileRoute()}>
+                  Edit Profile
+                </Link>
+              </li>
+              {canBlockIdea(me) && (
+                <li className={scss.item}>
+                  <Link className={scss.link} to={routes.getAllBlockIdeasRoute()}>
+                  Block Idea
+                  </Link>
+                </li>
+              )}
+              <li className={scss.item}>
+                <Link className={scss.link} to={routes.getLogOutRoute()}>
+                  Log out ({me.nick})
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className={scss.item}>
+                <Link className={scss.link} to={routes.getSignUpRoute()}>
+                  Sign Up
+                </Link>
+              </li>
+              <li className={scss.item}>
+                <Link className={scss.link} to={routes.getSignInRoute()}>
+                  Sign In
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
       <div className={scss.content} ref={layoutContentRef}>

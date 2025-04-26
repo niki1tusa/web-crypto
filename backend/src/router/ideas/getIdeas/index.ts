@@ -20,30 +20,32 @@ export const getIdeasTrpcRoute = trpc.procedure
           },
         },
       },
-      where: !input.search
+      where: {
+      blockedAt: null,
+      ...(!input.search
         ? undefined
         : {
             OR: [
               {
                 name: {
-                  contains: input.search,
+                  contains: normalizedSearch,
                   mode: 'insensitive'
                 }
               },
               {
                 nick: {
-                  contains: input.search,
+                  contains: normalizedSearch,
                   mode: 'insensitive'
                 }
               },
               {
                 text: {
-                  contains: input.search,
+                  contains: normalizedSearch,
                   mode: 'insensitive'
                 }
               },
             ],
-          },
+          })},
       orderBy: [
         {
           createdAt: "desc",
