@@ -4,7 +4,6 @@ import scss from "./index.module.scss"
 
 import { useMe } from "../../lib/ctx"
 import { createRef } from "react"
-import { canBlockIdea} from "../../../../backend/src/utils/can"
 
 export const layoutContentRef = createRef<HTMLDivElement>()
 export const Layout = () => {
@@ -31,13 +30,6 @@ export const Layout = () => {
                   Edit Profile
                 </Link>
               </li>
-              {canBlockIdea(me) && (
-                <li className={scss.item}>
-                  <Link className={scss.link} to={routes.getAllBlockIdeasRoute()}>
-                  Block Idea
-                  </Link>
-                </li>
-              )}
               <li className={scss.item}>
                 <Link className={scss.link} to={routes.getLogOutRoute()}>
                   Log out ({me.nick})

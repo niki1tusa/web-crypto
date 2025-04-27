@@ -16,7 +16,8 @@ import { NotFoundPage } from "./pages/other/NotFoundPage"
 import { EditProfilePage } from "./pages/auth/EditProfilePage"
 export const App = () => {
   return (
-    <TrpcProvider>
+
+          <TrpcProvider>
       <AppContextProvider>
       <BrowserRouter>
         <Routes>
@@ -35,5 +36,7 @@ export const App = () => {
       </BrowserRouter>
       </AppContextProvider>
     </TrpcProvider>
+
+
   )
 }

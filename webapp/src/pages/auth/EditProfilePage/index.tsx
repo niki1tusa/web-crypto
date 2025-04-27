@@ -11,6 +11,7 @@ import { useForm } from "../../../lib/form";
 import { withPageWrapper } from "../../../lib/pageWrapper";
 import { trpc } from "../../../lib/trpc";
 import { z } from "zod";
+import { useEffect } from "react";
 
 const General = ({me}: {me: NonNullable<TrpcRouteOutput['getMe']['me']>})=>{
     const trpcUtils = trpc.useUtils()
@@ -89,8 +90,11 @@ export const EditProfilePage = withPageWrapper({
     authorizedOnly: true,
     setProps: ({getAuthorizedMe})=> ({
         me: getAuthorizedMe()
-    })
+    }),
 })(({me})=>{
+      useEffect(() => {
+    document.title = `Edit Profile ${me.nick}`
+  }, [])
 return (
     <>
     <Segment title="Edit Profile">

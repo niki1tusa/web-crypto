@@ -8,10 +8,14 @@ import Cookies from "js-cookie"
 import { useForm } from "../../../lib/form"
 import { withPageWrapper } from "../../../lib/pageWrapper"
 import { zSignInTrpcInput } from "../../../../../backend/src/router/auth/signIn/input"
+import { useEffect } from "react"
 
 export const SignInPage = withPageWrapper({
-redirectAuthorized: true
+redirectAuthorized: true,
 })(() => {
+    useEffect(() => {
+    document.title = "Sign In"
+  }, [])
   const trpcUtils = trpc.useUtils()
   const signIn = trpc.signIn.useMutation()
   const { formik, btnProps, alertProps } = useForm({

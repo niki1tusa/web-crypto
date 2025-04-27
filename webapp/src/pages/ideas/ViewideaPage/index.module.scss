@@ -1,6 +1,53 @@
 @import "../../../styles/_variable.scss";
 @import "../../../styles/_mixins.scss";
 
+.createdAt {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.author {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10px 0;
+  align-items: center;
+
+  .avatar {
+    flex: 0 0 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .name {
+    flex: 1 1 100%;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
+}
+
+.gallery {
+  margin: 10px 0;
+}
+
+.certificate {
+  margin: 10px 0;
+
+  .certificateLink {
+    @include link;
+  }
+}
+
+.documents {
+  margin: 10px 0;
+
+  .documentLink {
+    @include link;
+  }
+}
+
 .text {
   font-size: 14px;
 
@@ -8,17 +55,7 @@
     margin-top: 10px;
   }
 }
-.author{
-  font-weight: bold;
-  font-style: 16px;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 3px;
-}
-.createdAt{
-  font-style: 12px;
-  margin-bottom: 10px;
-}
+
 .likes {
   margin-top: 20px;
 
@@ -27,9 +64,10 @@
   }
 }
 
-.editButton{
-  margin-top: 25px;
+.editButton {
+  margin-top: 20px;
 }
-.blockIdea{
+
+.blockIdea {
   margin-top: 20px;
 }

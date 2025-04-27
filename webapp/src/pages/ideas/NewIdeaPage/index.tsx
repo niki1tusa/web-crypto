@@ -8,6 +8,8 @@ import { FormItems } from "../../../components/FormItems"
 import { useForm } from "../../../lib/form"
 import { withPageWrapper } from "../../../lib/pageWrapper"
 import { zCreateIdeaTrpcInput } from "../../../../../backend/src/router/ideas/createIdea/input"
+import { useEffect } from "react"
+
 
 export const NewIdeaPage = withPageWrapper({
   authorizedOnly: true,
@@ -29,9 +31,12 @@ export const NewIdeaPage = withPageWrapper({
     successMessage: "Idea Created",
     showValidationAlert: true,
   })
-
+    useEffect(() => {
+    document.title = "Add Idea"
+  }, [])
   return (
     <Segment title="New Idea">
+
       <form
         onSubmit={e => {
           e.preventDefault()

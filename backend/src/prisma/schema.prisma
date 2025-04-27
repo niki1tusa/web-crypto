@@ -36,8 +36,7 @@ model User {
 enum UserPermission {
     BLOCK_IDEAS
     ALL
-    UN_BLOCK_IDEAS
-}
+}   
 
 model IdeaLike {
     id        String   @id @default(uuid())

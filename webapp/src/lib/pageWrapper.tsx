@@ -58,9 +58,7 @@ type PageWrapperProps<
   checkExist?: (helperProps: HelperProps<TQueryResult>) => boolean
   checkExistTitle?: string
   checkExistMessage?: string
-
   showLoaderOnFetching?: boolean
-
   useQuery?: () => TQueryResult
   setProps?: (setPropsProps: SetPropsProps<TQueryResult>) => TProps
   Page: React.FC<TProps>
@@ -83,7 +81,7 @@ const PageWrapper = <
   useQuery,
   setProps,
   Page,
-  showLoaderOnFetching = true
+  showLoaderOnFetching = true,
 }: PageWrapperProps<TProps, TQueryResult>) => {
   const navigate = useNavigate()
   const ctx = useAppContext()
@@ -146,8 +144,10 @@ const PageWrapper = <
     return ctx.me
   }
 try {
-    const props = setProps?.({...helperProps, checkExist: checkExistFnc, checkAccess: checkAccessFnc, getAuthorizedMe}) as TProps
-    return <Page {...props}/>
+    const props = setProps?.({...helperProps, checkExist: checkExistFnc, checkAccess: checkAccessFnc, getAuthorizedMe,}) as TProps
+    return (
+          <Page {...props}/> 
+)
 } catch(error) {
     if(error instanceof CheckExistError){
         return <ErrorPageComponent title={checkExistTitle} message={error.message || checkExistMessage}/>

@@ -11,6 +11,7 @@ import { zUpdateIdeaTrpcInput } from "../../../../../backend/src/router/ideas/up
 import { pick } from "lodash"
 import { useForm } from "../../../lib/form.tsx"
 import { withPageWrapper } from "../../../lib/pageWrapper.tsx"
+import { useEffect } from "react"
 
 // omit это обратная функция от extend от ZOD (omit выкидывает свойство)
 export const EditIdeaPage = withPageWrapper({
@@ -23,10 +24,13 @@ export const EditIdeaPage = withPageWrapper({
     const idea = checkExist(queryResult.data.idea, 'idea not found')
     checkAccess(ctx.me?.id === idea.authorId, 'An idea can only be edited by the author')
     return {
-      idea
+      idea,
     }
   },
 })(({idea}) =>{
+    useEffect(() => {
+    document.title = `Edit Idea - ${idea.name}`
+  }, [])
     const navigate = useNavigate()
   const updateIdea = trpc.updateIdea.useMutation()
 

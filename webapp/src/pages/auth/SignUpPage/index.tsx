@@ -9,10 +9,15 @@ import Cookies from "js-cookie"
 import { useForm } from "../../../lib/form"
 import { withPageWrapper } from "../../../lib/pageWrapper"
 import { zSignUpTrpcInput } from "../../../../../backend/src/router/auth/signUp/input"
+import { useEffect } from "react"
 
 export const SignUpPage = withPageWrapper({
- redirectAuthorized: true
+ redirectAuthorized: true,
+
 })(() => {
+    useEffect(() => {
+    document.title = "Sign Up"
+  }, [])
   const trpcUtils = trpc.useUtils()
   const signUp = trpc.signUp.useMutation()
   

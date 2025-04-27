@@ -9,7 +9,6 @@ import{ createIdeaTrpcRoute } from './ideas/createIdea';
 import{ getIdeaTrpcRoute } from './ideas/getIdea';
 import{ getIdeasTrpcRoute } from './ideas/getIdeas';
 import{ setIdeaLikeTrpcRoute } from './ideas/setIdeaLike';
-import{ unBlockIdeaTrpcRoute } from './ideas/unBlockIdea';
 import{ updateIdeaTrpcRoute } from './ideas/updateIdea';
 import{ updatePasswordTrpcRoute } from './updatePassword';
 import{ updateProfileTrpcRoute } from './updateProfile';
@@ -25,7 +24,6 @@ createIdea: createIdeaTrpcRoute,
 getIdea: getIdeaTrpcRoute,
 getIdeas: getIdeasTrpcRoute,
 setIdeaLike: setIdeaLikeTrpcRoute,
-unBlockIdea: unBlockIdeaTrpcRoute,
 updateIdea: updateIdeaTrpcRoute,
 updatePassword: updatePasswordTrpcRoute,
 updateProfile: updateProfileTrpcRoute,

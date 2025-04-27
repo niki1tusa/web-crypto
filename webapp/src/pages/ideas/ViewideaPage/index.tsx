@@ -12,6 +12,10 @@ import { TrpcRouteOutput } from "@app/backend/src/router"
 import { useForm } from "../../../lib/form"
 import { FormItems } from "../../../components/FormItems"
 import { Alert } from "../../../components/Alert"
+import { useEffect } from "react"
+
+
+
 
 export const Viewidea = withPageWrapper({
   useQuery: () => {
@@ -26,6 +30,9 @@ export const Viewidea = withPageWrapper({
     me: ctx.me,
   }),
 })(({ idea, me }) => {
+    useEffect(() => {
+    document.title = `Idea ${idea.name}`
+  }, [])
   return (
     <Segment title={idea.name} description={idea.description}>
       <div className={scss.createdAt}>
@@ -63,8 +70,7 @@ export const Viewidea = withPageWrapper({
     </Segment>
   )
 })
-// Array to store blocked ideas
-export const blockIdeaArr: NonNullable<TrpcRouteOutput["getIdea"]["idea"]>[] = []
+
 const BlockIdea = ({
   idea,
 }: {
@@ -75,11 +81,6 @@ const BlockIdea = ({
   const { formik, alertProps, btnProps } = useForm({
     onSubmit: async () => {
       await blockIdea.mutateAsync({ ideaId: idea.id })
-      // After successful blocking, add the idea to blockIdeaArr
-      // Check that the idea is not already in the array
-      if (!blockIdeaArr.some(blockedIdea => blockedIdea.id === idea.id)) {
-        blockIdeaArr.push(idea)
-      }
       await trpcUtils.getIdea.refetch({ ideaNick: idea.nick })
     },
   })
