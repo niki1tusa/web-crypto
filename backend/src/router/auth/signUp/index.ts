@@ -15,11 +15,20 @@ export const signUpTrpcRoute = trpc.procedure.input(zSignUpTrpcInput)
     }
   })
 if(existUser){
- throw Error('Nick with this nick already exist!')
+ throw Error('User with this nick already exist!')
  }
+ const existUserMail = await ctx.prisma.user.findUnique({
+  where: {
+    email: input.email
+  }
+})
+if(existUserMail){
+throw Error('User with this mail already exist!')
+}
 const user = await ctx.prisma.user.create({
   data: {
     nick: input.nick,
+    email: input.email,
     password: getPasswordHash(input.password)
   }
 })

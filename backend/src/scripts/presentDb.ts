@@ -10,6 +10,7 @@ export const presentDb = async(ctx: AppContext)=>{
         },
         create:{
             nick: 'admin',
+            email: "admin@example.com",
             password: getPasswordHash(env.ADMIN_INITIAL_PASSWORD),
             permissions: ['ALL']
         },

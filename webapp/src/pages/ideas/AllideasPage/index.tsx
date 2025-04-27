@@ -59,7 +59,7 @@ export const AllideasPage = withPageWrapper({
         <Loader type="page" />
       ) : isError ? (
         <Alert color="red">{error.message}</Alert>
-      ) : !data.pages[0].ideas.length ? (
+      ) : !data?.pages[0].ideas.length ? (
         <Alert color="brown">Nothing found by search</Alert>
       ) : (
         <div className={scss.ideas}>

@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router"
 import * as routes from "../../lib/routes"
 import scss from "./index.module.scss"
-
+import { ReactComponent as Logo } from '../../assets/images/logo.svg'
 import { useMe } from "../../lib/ctx"
 import { createRef } from "react"
 
@@ -11,7 +11,7 @@ export const Layout = () => {
   return (
     <div className={scss.layout}>
       <div className={scss.navigation}>
-        <div className={scss.logo}>Idea</div>
+        <Logo className={scss.logo}/>
         <ul className={scss.menu}>
           <li className={scss.item}>
             <Link className={scss.link} to={routes.getAllIdeasRoute()}>
