@@ -1,5 +1,5 @@
-@import "../../../styles/_variable.scss";
-@import "../../../styles/_mixins.scss";
+@use "../../../styles/_variable.scss" as *;
+@use "../../../styles/_mixins.scss" as mixins;
 
 .filter{
   margin-bottom: 20px;
@@ -14,10 +14,10 @@
     }
 
     .ideaName {
-      @include h2;
+      @include mixins.h2;
 
       .ideaLink {
-        @include link;
+        @include mixins.link;
       }
 
     }

@@ -1,5 +1,5 @@
-@import '../../styles/variable.scss';
-@import '../../styles/mixins.scss';
+@use '../../styles/variable.scss' as *;
+@use '../../styles/mixins.scss';
 
 .alert{
     padding: 10px;

@@ -1,6 +1,6 @@
 @use 'sass:math';
-@import "./variable";
-@import "../../node_modules/include-media/dist/_include-media";
+@use "./variable" as *;
+@use "../../node_modules/include-media/dist/_include-media";
 
 @mixin link($color: $black, $hoverColor: $white-gray) {
   color: $color;

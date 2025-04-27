@@ -1,5 +1,5 @@
-@import "../../node_modules/reset-css/sass/reset";
-@import "./variable";
+@use "../../node_modules/reset-css/sass/reset";
+@use "./variable" as *;
 
 #root {
   height: 100%;
