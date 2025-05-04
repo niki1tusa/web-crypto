@@ -6,6 +6,7 @@ import {createAppContext, type AppContext} from "./lib/ctx"
 import { applyPassportToExpressApp } from "./lib/passport"
 import { env } from "./lib/env"
 import { presentDb } from "./scripts/presentDb"
+import { sendWelcomeEmail } from "./lib/email"
 
 
 void (async () => {
@@ -22,6 +23,7 @@ void (async () => {
   app.listen(env.PORT, () => {
     console.info(`listening at http://localhost:${env.PORT}`)
   })
+
 } catch (error) {
   console.log(error)
   await ctx?.stop()

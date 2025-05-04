@@ -1,11 +1,9 @@
 import { useParams } from "react-router"
 import { editIdeaRoute, ViewTypeParams } from "../../../lib/routes"
-import { canBlockIdea } from "../../../../../backend/src/utils/can"
 import scss from "./index.module.scss"
 import { Segment } from "../../../components/Segment"
 import { format } from "date-fns"
 import { Button, LikeBtn, LinkBtn } from "../../../components/Button"
-
 import { trpc } from "../../../lib/trpc"
 import { withPageWrapper } from "../../../lib/pageWrapper"
 import { TrpcRouteOutput } from "@app/backend/src/router"
@@ -13,6 +11,7 @@ import { useForm } from "../../../lib/form"
 import { FormItems } from "../../../components/FormItems"
 import { Alert } from "../../../components/Alert"
 import { useEffect } from "react"
+import { canBlockIdea } from "@app/backend/src/utils/can"
 
 
 
