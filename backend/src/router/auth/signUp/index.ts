@@ -1,3 +1,4 @@
+import { sendWelcomeEmail } from "../../../lib/email"
 import { trpc } from "../../../lib/trpc"
 import { getPasswordHash } from "../../../utils/getPasswordHash"
 import { signJWT } from "../../../utils/signJWT"
@@ -32,6 +33,8 @@ const user = await ctx.prisma.user.create({
     password: getPasswordHash(input.password)
   }
 })
+  console.log({user})
+  void sendWelcomeEmail({user})
   const token = signJWT(user.id)
   return {token}
 })

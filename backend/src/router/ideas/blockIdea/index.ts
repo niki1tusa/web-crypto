@@ -1,3 +1,4 @@
+import { sendBlockedIdeaEmail } from "../../../lib/email";
 import { trpc } from "../../../lib/trpc";
 import { canBlockIdea } from "../../../utils/can";
 import { ZBlockIdeaTrpcInput } from "./input";
@@ -11,6 +12,9 @@ export const blockIdeaTrpcRoute = trpc.procedure.input(ZBlockIdeaTrpcInput).muta
     const idea = await ctx.prisma.idea.findUnique({
         where: {
             id: ideaId
+        },
+        include: {
+            author: true
         }
     })
     if(!idea) {
@@ -24,5 +28,6 @@ export const blockIdeaTrpcRoute = trpc.procedure.input(ZBlockIdeaTrpcInput).muta
             blockedAt: new Date()
         }
     })
+    void sendBlockedIdeaEmail({user: idea.author, idea})
     return true
 })

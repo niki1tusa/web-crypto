@@ -2,8 +2,10 @@
   "name": "@app/backend",
   "version": "0.0.0",
   "scripts": {
-    "dev": "ts-node-dev --watch ./src/emails/dist ./.env --rs --exit-child ./src/index.ts",
-    "build": "rimraf .dist && tsc --build ./tsconfig.json",
+    "dev": "ts-node-dev --watch ./src/emails/dist --rs --exit-child ./src/index.ts",
+    "build-ts": "rimraf .dist && tsc --build ./tsconfig.json",
+    "build-emails": "node ./src/scripts/build-email.js",
+    "build": "pnpm build-ts && pnpm build-emails && pnpm copy-emails",
     "start": "node ./dist/index.js",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "lint": "eslint --cache --cache-location node_modules/.cache/.eslintcache --ext .ts .",
@@ -11,8 +13,9 @@
     "pmd": "prisma migrate dev",
     "pg": "prisma generate",
     "prepare": "pnpm pg",
-    "buildEmail": "node ./src/scripts/build-email.js",
-    "watch-emails": "mjml -w \"./src/emails/[^_]*.mjml\" -o ./src/emails/dist"},
+    "copy-emails": "copyfiles -u 1 ./src/emails/dist/*.html ./dist",
+    "watch-emails": "mjml -w \"./src/emails/[^_]*.mjml\" -o ./src/emails/dist"
+  },
   "prisma": {
     "schema": "./src/prisma/schema.prisma"
   },
@@ -28,9 +31,12 @@
   "dependencies": {
     "@prisma/client": "^6.6.0",
     "@trpc/server": "^11.0.4",
+    "axios": "^1.9.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "fast-glob": "^3.3.3",
+    "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mjml": "^4.15.3",
